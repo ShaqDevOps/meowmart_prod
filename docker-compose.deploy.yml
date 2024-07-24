@@ -14,6 +14,9 @@ services:
     volumes:
       - static-data:/app/staticfiles
       - media-data:/app/mediafiles
+    networks:
+      - meowmart_net
+    command: python manage.py runserver 0.0.0.0:9000
 
   proxy:
     build:
@@ -28,7 +31,13 @@ services:
       - media-data:/vol/media
     environment:
       - DOMAIN=${DOMAIN}
+    networks:
+      - meowmart_net
 
 volumes:
   static-data:
   media-data:
+
+
+networks:
+  meowmart_net:
