@@ -8,11 +8,10 @@ ENV APP_PORT=9000
 
 USER root
 
-RUN apk add --no-cache openssl bash
+RUN apk add --no-cache bash
 RUN chmod +x /run.sh
 
 VOLUME /vol/static
 VOLUME /vol/media
-VOLUME /vol/www
 
 CMD ["/run.sh"]
