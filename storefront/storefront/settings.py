@@ -89,6 +89,10 @@ SECRET_KEY = SECRET_KEY
 ALLOWED_HOSTS = [DOMAIN, '127.0.0.1', 'localhost']
 
 
+# settings.py
+CSRF_TRUSTED_ORIGINS = ['https://shaqserver.com']
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
