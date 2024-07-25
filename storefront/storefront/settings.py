@@ -82,7 +82,7 @@ INSTAGRAM_APP_ID = secrets.get('INSTAGRAM_APP_ID')
 INSTAGRAM_APP_SECRET = secrets.get('INSTAGRAM_APP_SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = SECRET_KEY
