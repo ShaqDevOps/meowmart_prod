@@ -35,10 +35,6 @@ schema_view = get_schema_view(
 )
 
 
-# def health_check(request):
-#     return JsonResponse({'status': 'ok'})
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
@@ -53,7 +49,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', include('django_prometheus.urls')),
     path('', include('pages.urls')),
-    # path('health/', health_check)
+
 
 
 
