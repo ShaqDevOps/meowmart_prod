@@ -32,7 +32,3 @@ urlpatterns = [
 ]
 
 urlpatterns += router.urls
-{
-    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyMTk2NTU4NCwiaWF0IjoxNzIxODc5MTg0LCJqdGkiOiI4ODliODcxZjRlMDI0ZDBjYTEzM2I3MzYxOWVhYzEzOCIsInVzZXJfaWQiOjUzfQ.9JqxBD_eiCChr1T-90IaP7mNaMcHQm7QfZK4ahNjmQc",
-    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxODA4Mjc5MTg0LCJpYXQiOjE3MjE4NzkxODQsImp0aSI6IjI0YzRhMzNkMWI5MTRlMTY4MTBlNjc3MjIxYmUwZjU0IiwidXNlcl9pZCI6NTN9.UIk3FgfZFNFaJ264N-zBYPcJ_0NfxX-Zl8HCpDmNISU"
-}

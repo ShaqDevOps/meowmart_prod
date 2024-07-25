@@ -286,5 +286,14 @@ def my_orders(request):
     return render(request, 'core/my_orders.html', context)
 
 
+# def get_all_orders(request):
+#     user = request.user
+
+#     user_orders = user.customer.order_set.all()
+#     for order in user_orders:
+#         item =  order.items
+         
+
+
 def privacy_policy(request):
     return render(request, 'core/privacy_policy.html')

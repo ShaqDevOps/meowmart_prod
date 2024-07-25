@@ -3,13 +3,14 @@ from djoser.serializers import UserSerializer as BaseUserSerializer, UserCreateS
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 
+
 class CustomerSerializer(serializers.ModelSerializer):
     model = Customer
     fields = ['phone', 'membership']
 
 
 class UserCreateSerializer(BaseUserCreateSerializer):
-    
+
     class Meta(BaseUserCreateSerializer.Meta):
         fields = ['id', 'username', 'password',
                   'email', 'first_name', 'last_name']
@@ -20,10 +21,10 @@ class UserSerializer(BaseUserSerializer):
     class Meta(BaseUserSerializer.Meta):
         fields = ['id', 'username', 'email', 'first_name', 'last_name']
         ref_name = 'DjoserUser'  # Unique ref_name for Swagger
-        
-        
+
 
 User = get_user_model()
+
 
 class CustomUserCreationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,5 +43,3 @@ class CustomUserCreationSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
-
-

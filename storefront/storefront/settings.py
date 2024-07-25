@@ -88,6 +88,7 @@ DEBUG = False
 SECRET_KEY = SECRET_KEY
 ALLOWED_HOSTS = [DOMAIN, '127.0.0.1', 'localhost']
 
+USE_X_FORWARDED_HOST = True
 
 # settings.py
 CSRF_TRUSTED_ORIGINS = ['https://shaqserver.com']
