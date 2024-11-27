@@ -21,8 +21,22 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
-        role-to-assume: arn:aws:iam::794038254982:role/GitHubActionsRole
+        role-to-assume: arn:aws:iam::794038254982:role/GithubRole
         aws-region: us-east-1
+
+    - name: Retrieve OIDC Token
+      id: retrieve-oidc-token
+      run: |
+          echo "Retrieving OIDC token..."
+          TOKEN=$(curl -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com")
+          echo "TOKEN=$TOKEN" >> $GITHUB_ENV
+      
+
+    - name: Output OIDC Token
+      run: |
+        echo "OIDC Token: ${{ env.TOKEN }}"
+      
+
 
     # Login to Docker Hub
     - name: Login to Docker Hub
