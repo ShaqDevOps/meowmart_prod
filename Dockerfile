@@ -3,7 +3,7 @@ FROM python:3.10-alpine3.16
 # Set environment variables
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONPATH /app
-ENV DJANGO_SETTINGS_MODULE storefront.storefront.settings
+ENV DJANGO_SETTINGS_MODULE storefront.settings
 
 # Install system dependencies
 RUN apk add --upgrade --no-cache build-base linux-headers libffi-dev openssl-dev mariadb-connector-c-dev pcre-dev
@@ -32,6 +32,8 @@ RUN chmod +x /entrypoint.sh
 # Use the non-root user to run the app
 USER django
 
+# Expose the application port
+EXPOSE 8000
+
 # Set the entrypoint script
 ENTRYPOINT ["/entrypoint.sh"]
-

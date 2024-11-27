@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: meowmart-service
+  labels:
+    app: meowmart
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  ports:
+  - port: 80
+    targetPort: 9000
+    protocol: TCP
+  selector:
+    app: meowmart

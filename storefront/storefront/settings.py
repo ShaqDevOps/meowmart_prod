@@ -41,7 +41,7 @@ ROOT_URLCONF = 'storefront.urls'
 
 
 def get_secret():
-    secret_name = "prod/meowmart_secrets"
+    secret_name = "meomwart_secrets"
     region_name = "us-east-1"
 
     client = boto3.client(
@@ -86,7 +86,7 @@ DEBUG = False
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = SECRET_KEY
-ALLOWED_HOSTS = [DOMAIN, '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 USE_X_FORWARDED_HOST = True
 

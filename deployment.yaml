@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meowmart
+  labels:
+    app: meowmart
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: meowmart
+  template:
+    metadata:
+      labels:
+        app: meowmart
+    spec:
+      containers:
+      - name: meowmart-container
+        image: shaqdevops/meowmart:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9000
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 9000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+
+
+

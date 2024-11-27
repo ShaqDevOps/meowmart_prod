@@ -5,7 +5,7 @@ from django.contrib.auth import login
 from django.http import HttpResponseRedirect
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.shortcuts import redirect
-from allauth.exceptions import ImmediateHttpResponse
+from allauth.core.exceptions import ImmediateHttpResponse
 from django.urls import reverse
 from django.shortcuts import resolve_url
 import logging

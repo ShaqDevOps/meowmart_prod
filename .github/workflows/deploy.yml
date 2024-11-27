@@ -1,0 +1,55 @@
+name: Build and Deploy to EKS
+
+on:
+  push:
+    branches:
+      - main  # Replace with your target branch
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write  # Required for OIDC
+      contents: read
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Configure AWS credentials using your GitHub OIDC-based role
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        role-to-assume: arn:aws:iam::794038254982:role/GitHubActionsRole
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    # Login to Docker Hub
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    # Build and push Docker image
+    - name: Build and push Docker image
+      run: |
+        docker build -t ${{ secrets.DOCKER_IMAGE }} .
+        docker push ${{ secrets.DOCKER_IMAGE }}
+
+    # Set up kubectl
+    - name: Set up kubectl
+      run: |
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        chmod +x kubectl
+        sudo mv kubectl /usr/local/bin
+
+    # Update kubeconfig for EKS
+    - name: Update kubeconfig for EKS
+      run: |
+        aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.CLUSTER_NAME }}
+
+    # Deploy to EKS
+    - name: Deploy to EKS
+      run: |
+        kubectl apply -f deployment.yaml
+        kubectl apply -f service.yaml
+        kubectl set image deployment/meowmart meowmart-container=${{ secrets.DOCKER_IMAGE }}
+        kubectl rollout status deployment/meowmart
