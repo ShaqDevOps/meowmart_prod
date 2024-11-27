@@ -64,6 +64,13 @@ jobs:
       run: |
         aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.CLUSTER_NAME }}
 
+    - name: Debug kubeconfig
+      run: cat ~/.kube/config
+
+    - name: Test kubectl access
+      run: kubectl get nodes
+
+
     # Deploy to EKS
     - name: Deploy to EKS
       run: |
