@@ -79,5 +79,5 @@ jobs:
         kubectl apply -f deployment.yaml --validate=false
         kubectl apply -f service.yaml --validate=false
         kubectl set image deployment/meowmart meowmart-container=${{ secrets.DOCKER_IMAGE }}
-        kubectl patch deployment meowmart -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"$(date +'%s')\"}}}}"
+        kubectl patch deployment meowmart -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"$(date +%s)\"}}}}}"
         kubectl rollout status deployment/meowmart
