@@ -47,6 +47,7 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc',
          cache_timeout=0), name='schema-redoc'),
     path('accounts/', include('allauth.urls')),
+    path('captcha/', include('captcha.urls')), 
     path('', include('django_prometheus.urls')),
     path('', include('pages.urls')),
 

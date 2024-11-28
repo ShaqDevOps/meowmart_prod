@@ -93,14 +93,14 @@ class CustomLoginView(View):
                 key='access_token',
                 value=access_token,
                 httponly=True,
-                max_age=3600,  # Token validity in seconds
-                samesite='Lax'  # Adjust according to your needs
+                max_age=3600, 
+                samesite='Lax'
             )
             response.set_cookie(
                 key='refresh_token',
                 value=str(refresh),
                 httponly=True,
-                max_age=3600 * 24 * 7,  # 1 week
+                max_age=3600 * 24 * 7,
                 samesite='Lax'
             )
             return response

@@ -1,9 +1,10 @@
+import us
+import os
+from captcha.fields import CaptchaField
 from store.models import Customer, Address
 from django.contrib.auth import authenticate
 from allauth.account.forms import LoginForm
 import logging
-import us
-import os
 from email.mime.image import MIMEImage
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
@@ -14,6 +15,8 @@ from django import forms
 from pathlib import Path
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
+
+
 
 User = get_user_model()
 
@@ -40,10 +43,13 @@ class PasswordResetForm(forms.Form):
 
 
 class CustomSignupForm(SignupForm):
+    
     first_name = forms.CharField(
         max_length=30, required=False, label='First Name')
     last_name = forms.CharField(
         max_length=30, required=False, label='Last Name')
+    captcha = CaptchaField()
+
 
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)
